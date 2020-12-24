@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>고객 거래 상품 관리</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            border: 1px solid black;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 75px;
+            padding: 1rem;
+            color: white;
+            background: teal;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1,
+        p {
+            margin: 0;
+        }
+        main {
+            padding: 1rem;
+            height: 100%;
+        }
+        body {
+            padding-top: 75px;
+            background: #EEE;
+        }
+        body,
+        html {
+            height: 200%;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .cursor {cursor: pointer;}
+    </style>
+</head>
+
+<header>
+    <h1>고객 거래 상품 관리 시스템</h1>
+    <nav>
+        <div class="cursor">
+            <span style= "padding-right: 20pt;" onclick="location.href='/main'">등록</span>
+            <span style= "padding-right: 20pt;" onclick="location.href='/lookup'">조회</span>
+            <span style= "padding-right: 20pt;" onclick="location.href='/extend'">부가 기능</span>
+        </div>
+    </nav>
+</header>
+
+<body>
+    <style>
+    </style>
+    <h1>데이터 입력</h1>
+    <div>
+        <form id="customer-form">
+            <fieldset>
+                <legend>고객 등록</legend>
+                <div><input id="cusName" type="text" placeholder="이름"></div>
+                <div><input id="phone" type="text" placeholder="전화번호(-포함)"></div>
+                <div><input id="address" type="text" placeholder="주소"></div>
+                <div>
+                    <select id="gender" name="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <button type="submit">등록</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+
+    <div>
+        <form id="transaction-form">
+            <fieldset>
+                <legend>거래 등록</legend>
+                <div><input id="transNum" type="text" placeholder="거래 번호"></div>
+                <div><input id="productID" type="number" placeholder="상품ID"></div>
+                <div><input id="price" type="text" placeholder="가격"></div>
+                <div><input id="date" type="date" placeholder="날짜"></div>
+                <div><input id="cusName" type="text" placeholder="고객명"></div>
+                <button type="submit">등록</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <div>
+        <form id="product-form">
+            <fieldset>
+                <legend>상품 등록</legend>
+                <div><input id="name" type="text" placeholder="상품명"></div>
+                <div><input id="productID" type="number" placeholder="상품ID"></div>
+                <div><input id="supName" type="text" placeholder="공급자명"></div>
+                <button type="submit">등록</button>
+            </fieldset>
+        </form>
+    </div>
+    <div>
+        <form action = "csv" method="post" enctype="multipart/form-data" id="csv-form">
+            <fieldset>
+                <legend>csv 파일 등록</legend>
+                <div>
+                    <body>
+                        <input type="file" name="csvfile" />
+                        <input type="submit" value="등록"/>
+                    <body>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/sequelize.js"></script>
+</body>
+
+</html>

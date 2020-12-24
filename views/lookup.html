@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>고객 거래 상품 관리</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            border: 1px solid black;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 75px;
+            padding: 1rem;
+            color: white;
+            background: teal;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1,
+        p {
+            margin: 0;
+        }
+        main {
+            padding: 1rem;
+            height: 100%;
+        }
+        body {
+            padding-top: 75px;
+            background: #EEE;
+        }
+        body,
+        html {
+            height: 200%;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .cursor {cursor: pointer;}
+    </style>
+</head>
+
+<header>
+    <h1>고객 거래 상품 조회</h1>
+    <nav>
+        <div class="cursor">
+            <span style= "padding-right: 20pt;" onclick="location.href='/main'">등록</span>
+            <span style= "padding-right: 20pt;" onclick="location.href='/lookup'">조회</span>
+            <span style= "padding-right: 20pt;" onclick="location.href='/extend'">부가 기능</span>
+        </div>
+    </nav>
+</header>
+
+<body>
+    <style>
+    </style>
+    <h1>데이터 조회</h1>
+    <div>
+        <form id="customer-look" action="/customers/lookup">
+            <fieldset>
+                <legend>고객 조회</legend>
+                <div>
+                    <select id="attribute" name="attribute">
+                        <option value="name">이름</option>
+                        <option value="phone">전화번호</option>
+                        <option value="address">주소</option>
+                        <option value="gender">성별</option>
+                    </select>
+                </div>
+                <div><input id="Cinput" name = "Cinput" type="text" placeholder="입력값"></div>
+                <button type="submit">조회</button>
+            </fieldset>
+        </form>
+    </div>
+    {% for customer in customers %}
+        <div class="customer">
+            <float class="customer-name">{{customer.name}}</float>
+            <float class="customer-phone">{{customer.phone}}</float>
+            <float class="customer-address">{{customer.address}}</float>
+            <float class="customer-gender">{{customer.gender}}</float>
+        </div>
+    {% endfor %}
+    <br>
+
+    <div>
+        <form id="customer-look" action="/transactions/lookup">
+            <fieldset>
+                <legend>거래 조회</legend>
+                <div>
+                    <select id="attribute" name="attribute">
+                        <option value="transNum">거래 번호</option>
+                        <option value="productID">상품ID</option>
+                        <option value="price">가격</option>
+                        <option value="date">날짜</option>
+                        <option value="cusName">고객명</option>
+                    </select>
+                </div>
+                <div><input id="Tinput" name="Tinput" type="text" placeholder="입력값"></div>
+                <button type="submit">조회</button>
+            </fieldset>
+        </form>
+    </div>
+    {% for transaction in transactions %}
+        <div class="customer">
+            <float class="customer-name">{{transaction.transactionNumber}}</float>
+            <float class="customer-phone">{{transaction.productID}}</float>
+            <float class="customer-address">{{transaction.price}}</float>
+            <float class="customer-gender">{{transaction.date}}</float>
+            <float class="customer-gender">{{transaction.customerName}}</float>
+        </div>
+    {% endfor %}
+    <br>
+    <div>
+        <form id="customer-look" action="/products/lookup">
+            <fieldset>
+                <legend>상품 조회</legend>
+                <div>
+                    <select id="attribute" name="attribute">
+                        <option value="name">상품명</option>
+                        <option value="productID">상품ID</option>
+                        <option value="supName">공급자명</option>
+                    </select>
+                </div>
+                <div><input id="Pinput" name="Pinput" type="text" placeholder="입력값"></div>
+                <button type="submit">조회</button>
+            </fieldset>
+        </form>
+    </div>
+    {% for product in products %}
+        <div class="customer">
+            <float class="customer-name">{{product.name}}</float>
+            <float class="customer-productID">{{product.productID}}</float>
+            <float class="customer-supName">{{product.supplierName}}</float>
+        </div>
+    {% endfor %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+
+</html>

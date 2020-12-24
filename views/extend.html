@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>고객 거래 상품 관리</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            border: 1px solid black;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 75px;
+            padding: 1rem;
+            color: white;
+            background: teal;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1,
+        p {
+            margin: 0;
+        }
+        main {
+            padding: 1rem;
+            height: 100%;
+        }
+        body {
+            padding-top: 75px;
+            background: #EEE;
+        }
+        body,
+        html {
+            height: 200%;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        .cursor {cursor: pointer;}
+    </style>
+</head>
+
+<header>
+    <h1>고객 거래 상품 조회</h1>
+    <nav>
+        <div class="cursor">
+            <span style= "padding-right: 20pt;" onclick="location.href='/main'">등록</span>
+            <span style= "padding-right: 20pt;" onclick="location.href='/lookup'">조회</span>
+            <span style= "padding-right: 20pt;" onclick="location.href='/extend'">부가 기능</span>
+        </div>
+    </nav>
+</header>
+
+<body>
+    <style>
+    </style>
+    <h1>데이터 조회</h1>
+    <div>
+        <form id="f1" action="/extend/f1">
+            <fieldset>
+                <legend>기능 1</legend>
+                <div>남자보다 여자가 많이 산 제품 리스트
+                <button type="submit">결과</button></div>
+            </fieldset>
+        </form>
+    </div>
+    {% for woman in womans %}
+        <div>{{woman.name}}</div>
+    {% endfor %}
+    <br>
+
+    <div>
+        <form id="f2" action="/extend/f2">
+            <fieldset>
+                <legend>기능 2</legend>
+                <div>입력한 날 이전에 가장 많은 거래가 이루어진 k가지 상품 리스트</div>
+                <div><input id="idate" name="idate" type="text" placeholder="날짜 (yyyy-mm-dd)"></div>
+                <div><input id="kValue" name="kValue" type="text" placeholder="k가지"></div>
+                <button type="submit">결과</button>
+            </fieldset>
+        </form>
+    </div>
+    {% for most in mosts %}
+        <div>{{most.name}}</div>
+    {% endfor %}
+    <br>
+    <div>
+        <form id="f3" action="/extend/f3">
+            <fieldset>
+                <legend>기능 3</legend>
+                <div>하나의 공급자에서 m번 이상의 제품을 산 고객 리스트</div>
+                <div><input id="mValue" name="mValue" type="text" placeholder="m번"></div>
+                <button type="submit">결과</button>
+            </fieldset>
+        </form>
+    </div>
+    {% for customerM in customerMs %}
+        <div>{{customerM.name}}</div>
+    {% endfor %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+
+</html>
